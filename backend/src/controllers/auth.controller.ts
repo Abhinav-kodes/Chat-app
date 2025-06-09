@@ -1,16 +1,14 @@
-// In controllers/auth.controller.ts
 import { Request, Response } from "express";
 import User from "../models/user.model";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../lib/utils";
 
-// CHANGE 1: Update the return type to Promise<void>
 export const signup = async (req: Request, res: Response): Promise<void> => {
     const { fullName, email, password } = req.body;
     try {
         if (password.length < 6) {
             res.status(400).json({ message: "Password must be at least 6 characters" });
-            return; // Add a simple return to exit the function
+            return;
         }
 
         const user = await User.findOne({ email });
