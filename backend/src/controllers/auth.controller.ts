@@ -94,15 +94,12 @@ export const logout = (req: Request, res: Response) => {
     }
 };
 
-export const updateProfile = async (req:  CustomRequest, res: Response): Promise<void>  =>  {
+export const updateProfile = async (req:  CustomRequest, res: Response) =>  {
     try {
-        if (!req.user) {
-            res.status(401).json({ message: "Unauthorized" });
-            return;
-        }
+       
 
         const {profilePic} = req.body;
-        const userId = req.user._id;
+        const userId = req.user?._id;
         
         if (!profilePic){
             res.status(400).json({ message: "Profile pic is required" })
@@ -119,10 +116,6 @@ export const updateProfile = async (req:  CustomRequest, res: Response): Promise
 
 export const checkAuth = (req:  CustomRequest, res: Response) => {
     try {
-        if (!req.user) {
-        res.status(401).json({ message: "Unauthorized" });
-        return;
-    }
         res.status(200).json(req.user);
     } catch (error) {
         console.log("Error in checkAuth controller", (error as Error).message);
