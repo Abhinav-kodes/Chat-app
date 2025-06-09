@@ -4,7 +4,6 @@ import User from "../models/user.model";
 import { NextFunction, Request, Response } from "express";
 import { CustomRequest } from "../types/custom";
 
-// This interface is correct and well-defined.
 interface CustomJwtPayload extends JwtPayload {
     userId: string;
 }
@@ -17,10 +16,7 @@ export const protectRoute = async (req: CustomRequest, res: Response, next: Next
             return ;
         }
 
-        // jwt.verify will throw an error if the token is invalid, which is caught below.
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as CustomJwtPayload;
-
-        // The 'if (!decoded)' check is removed because it's unreachable.
 
         const user = await User.findById(decoded.userId).select("-password");
 
@@ -30,14 +26,12 @@ export const protectRoute = async (req: CustomRequest, res: Response, next: Next
             return;
         }
 
-        // Success! Attach the user and proceed.
         req.user = user;
         next();
 
     } catch (error) {
         console.log("Error in protectRoute middleware: ", (error as Error).message);
         
-        // Correctly handle specific JWT errors with a 401 status.
         if ((error as Error).name === "JsonWebTokenError") {
             res.status(401).json({ message: "Unauthorized: Invalid Token" });
             return;
@@ -47,7 +41,6 @@ export const protectRoute = async (req: CustomRequest, res: Response, next: Next
              return;
         }
 
-        // For all other unexpected errors, send a 500.
         res.status(500).json({ message: "Internal Server Error" });
         return;
     }
