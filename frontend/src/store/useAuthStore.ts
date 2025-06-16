@@ -6,7 +6,6 @@ import { AxiosError } from "axios";
 
 interface AuthStoreState {
   authUser: UserType | null;
-  
   isSigningUp: boolean;
   isLoggingIn: boolean;
   isUpdatingProfile: boolean;

@@ -3,4 +3,6 @@ export type UserType = {
   username: string;
   email: string;
   profilePic?: string;
+  fullName?: string;
+  createdAt?: string
 };
