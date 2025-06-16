@@ -6,6 +6,7 @@ import { AxiosError } from "axios";
 
 interface AuthStoreState {
   authUser: UserType | null;
+  
   isSigningUp: boolean;
   isLoggingIn: boolean;
   isUpdatingProfile: boolean;
@@ -14,6 +15,7 @@ interface AuthStoreState {
   signup: (data: { fullName: string; email: string; password: string }) => Promise<void>;
   logout: () => Promise<void>;
   login: (data: {email: string; password: string }) => Promise<void>;
+  updateProfile: (data: {}) => Promise<void>
 }
 
 export const useAuthStore = create<AuthStoreState>((set) => ({
@@ -84,4 +86,7 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
         }
     },
 
+    updateProfile: async (data) => {
+
+    },
 }));
