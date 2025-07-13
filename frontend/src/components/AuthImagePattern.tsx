@@ -13,7 +13,7 @@ const AuthImagePattern = ({ title, subtitle }: AuthImagePatternProps ) => {
            <div 
            key={i}
            className={`aspect-square rounded-2xl ${
-            i % 2 === 0 ? "bg-gray-400 animate-pulse" : "bg-blue-300"
+            i % 2 === 0 ? "bg-gray-400 animate-pulse" : "bg-base-content"
             }`} 
             />
 

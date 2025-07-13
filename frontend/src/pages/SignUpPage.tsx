@@ -36,7 +36,7 @@ const SignUpPage = () => {
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       <div className="flex flex-col justify-center items-start p-6 ">
-        <div className="w-full max-w-md space-y-8 ml-50 bg-gray-300 rounded-xl p-6">
+        <div className="w-full max-w-md space-y-8 ml-50 bg-base-300 rounded-xl p-6">
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
               <div className="size-12 rounded-xl bf=g-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
